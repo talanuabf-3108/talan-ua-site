@@ -1,0 +1,197 @@
+# Адмінка сайту БО «БФ «Талан.юа» (Sveltia CMS)
+# ЗАМІНІТЬ repo нижче, якщо назва акаунта або репозиторію інша
+backend:
+  name: github
+  repo: talanuabf-3108/talan-ua-site
+  branch: main
+  commit_messages:
+    update: "Оновлено {{collection}} «{{slug}}»"
+
+site_url: https://talan-ua.netlify.app
+display_url: https://talan-ua.netlify.app
+media_folder: /images
+public_folder: /images
+
+collections:
+  - name: pages
+    label: Розділи сайту
+    editor: { preview: false }
+    files:
+      - name: home
+        label: Головна, Про фонд, Напрямки, Навчання команди
+        file: content/home.json
+        fields:
+          - label: Головний екран
+            name: hero
+            widget: object
+            fields:
+              - { label: Надпис над заголовком, name: eyebrow, widget: string }
+              - { label: Заголовок (чорна частина), name: title, widget: string }
+              - { label: Заголовок (червона частина), name: title_accent, widget: string }
+              - { label: Текст під заголовком, name: lead, widget: text }
+              - label: Громади (кружечки)
+                name: places
+                widget: list
+                field: { label: Назва, name: place, widget: string }
+          - label: Цифри
+            name: facts
+            widget: list
+            label_singular: цифру
+            summary: "{{number}} — {{text}}"
+            fields:
+              - { label: Число, name: number, widget: string }
+              - { label: Підпис, name: text, widget: string }
+          - label: Про фонд
+            name: about
+            widget: object
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - label: Абзаци тексту
+                name: paragraphs
+                widget: list
+                field: { label: Абзац, name: paragraph, widget: text }
+              - label: Наші цілі
+                name: goals
+                widget: list
+                field: { label: Ціль, name: goal, widget: text }
+              - { label: Фото команди, name: photo, widget: image, required: false }
+              - { label: Підпис до фото, name: photo_caption, widget: string, required: false }
+          - label: Напрямки роботи
+            name: directions
+            widget: list
+            label_singular: напрямок
+            summary: "{{title}}"
+            fields:
+              - { label: Назва, name: title, widget: string }
+              - { label: Опис, name: text, widget: text }
+          - label: Як розвивається команда
+            name: learning
+            widget: list
+            label_singular: навчання
+            summary: "{{title}}"
+            fields:
+              - { label: Назва, name: title, widget: string }
+              - { label: Опис, name: text, widget: text }
+
+      - name: projects
+        label: Проєкти
+        file: content/projects.json
+        fields:
+          - label: Проєкти (зверху вниз — у тому ж порядку на сайті)
+            name: items
+            widget: list
+            label_singular: проєкт
+            summary: "{{title}}"
+            fields:
+              - { label: Назва, name: title, widget: string }
+              - label: Статус
+                name: status
+                widget: select
+                options: [{ label: Триває, value: "on" }, { label: Завершено, value: "done" }]
+                default: "on"
+              - { label: Період, name: period, widget: string, hint: "Напр.: з травня 2025 або січень – червень 2026" }
+              - { label: Опис, name: text, widget: text }
+              - { label: Фото, name: photo, widget: image, required: false }
+              - label: Деталі (партнер, бюджет тощо)
+                name: details
+                widget: list
+                label_singular: рядок
+                summary: "{{label}}: {{value}}"
+                required: false
+                fields:
+                  - { label: Назва поля, name: label, widget: string, hint: "Напр.: Партнер, Бюджет, Програма" }
+                  - { label: Значення, name: value, widget: string }
+              - { label: Текст посилання, name: link_text, widget: string, required: false }
+              - { label: Адреса посилання, name: link_url, widget: string, required: false }
+
+      - name: news
+        label: Новини та відзнаки
+        file: content/news.json
+        fields:
+          - label: Новини (перша — найсвіжіша)
+            name: items
+            widget: list
+            label_singular: новину
+            summary: "{{title}}"
+            fields:
+              - { label: Короткий заголовок, name: heading, widget: string, required: false }
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: text, widget: text, required: false }
+              - { label: Текст посилання, name: link_text, widget: string, required: false }
+              - { label: Посилання (напр. на YouTube), name: link_url, widget: string, required: false }
+
+      - name: partners
+        label: Партнери
+        file: content/partners.json
+        fields:
+          - { label: Текст під заголовком, name: lead, widget: text }
+          - label: Групи партнерів
+            name: groups
+            widget: list
+            label_singular: групу
+            summary: "{{title}}"
+            fields:
+              - { label: Назва групи, name: title, widget: string }
+              - label: Партнери
+                name: items
+                widget: list
+                field: { label: Назва організації, name: partner, widget: string }
+
+      - name: documents
+        label: Звітність і документи
+        file: content/documents.json
+        fields:
+          - { label: Текст під заголовком, name: lead, widget: text }
+          - label: Фінансові показники
+            name: money
+            widget: list
+            label_singular: показник
+            summary: "{{value}} — {{label}}"
+            fields:
+              - { label: Значення, name: value, widget: string }
+              - { label: Підпис, name: label, widget: string }
+          - { label: Примітка під показниками, name: money_note, widget: string, required: false }
+          - label: Документи (PDF)
+            name: items
+            widget: list
+            label_singular: документ
+            summary: "{{title}}"
+            fields:
+              - { label: Назва, name: title, widget: string }
+              - { label: Короткий опис, name: subtitle, widget: string, required: false }
+              - { label: Файл PDF, name: file, widget: file, media_folder: /docs, public_folder: /docs }
+              - { label: Кількість сторінок, name: pages, widget: string, required: false, hint: "Напр.: 4 с." }
+
+      - name: support
+        label: Підтримати і Контакти
+        file: content/support.json
+        fields:
+          - label: Підтримати
+            name: donate
+            widget: object
+            fields:
+              - { label: Заголовок, name: title, widget: string }
+              - { label: Текст, name: lead, widget: text }
+              - label: Способи допомогти
+                name: ways
+                widget: list
+                label_singular: спосіб
+                summary: "{{title}}"
+                fields:
+                  - { label: Назва, name: title, widget: string }
+                  - { label: Опис, name: text, widget: string }
+              - { label: Отримувач, name: recipient, widget: string }
+              - { label: IBAN, name: iban, widget: string }
+              - { label: Код ЄДРПОУ, name: code, widget: string }
+              - { label: Банк, name: bank, widget: string }
+              - { label: Призначення платежу, name: purpose, widget: string }
+          - label: Контакти
+            name: contacts
+            widget: object
+            fields:
+              - { label: Електронна пошта, name: email, widget: string }
+              - { label: Підпис над телефоном, name: phone_label, widget: string }
+              - { label: Телефон, name: phone, widget: string }
+              - { label: Instagram (як показувати), name: instagram, widget: string }
+              - { label: Instagram (посилання), name: instagram_url, widget: string }
+              - { label: Адреса, name: address, widget: text }
