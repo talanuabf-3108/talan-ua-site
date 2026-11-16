@@ -7,8 +7,8 @@ backend:
   commit_messages:
     update: "Оновлено {{collection}} «{{slug}}»"
 
-site_url: https://talan-ua.netlify.app
-display_url: https://talan-ua.netlify.app
+site_url: https://talan.org.ua
+display_url: https://talan.org.ua
 media_folder: /images
 public_folder: /images
 
@@ -72,6 +72,7 @@ collections:
             fields:
               - { label: Назва, name: title, widget: string }
               - { label: Опис, name: text, widget: text }
+              - { label: Фото, name: photo, widget: image, required: false }
 
       - name: projects
         label: Проєкти
