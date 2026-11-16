@@ -4,7 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Талан.юа</title>
-<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='-60 -60 120 120'%3E%3Cpolygon fill='%231D5CC4' points='6.5,-2.7 36.5,-2.7 57.7,-23.9 27.7,-23.9'/%3E%3Cpolygon fill='%23F3C316' points='2.7,-6.5 23.9,-27.7 23.9,-57.7 2.7,-36.5'/%3E%3Cpolygon fill='%231D5CC4' points='-2.7,-6.5 -2.7,-36.5 -23.9,-57.7 -23.9,-27.7'/%3E%3Cpolygon fill='%23F3C316' points='-6.5,-2.7 -27.7,-23.9 -57.7,-23.9 -36.5,-2.7'/%3E%3Cpolygon fill='%23C51C24' points='-6.5,2.7 -36.5,2.7 -57.7,23.9 -27.7,23.9'/%3E%3Cpolygon fill='%2315171D' points='-2.7,6.5 -23.9,27.7 -23.9,57.7 -2.7,36.5'/%3E%3Cpolygon fill='%23C51C24' points='2.7,6.5 2.7,36.5 23.9,57.7 23.9,27.7'/%3E%3Cpolygon fill='%2315171D' points='6.5,2.7 27.7,23.9 57.7,23.9 36.5,2.7'/%3E%3C/svg%3E">
+<link rel="icon" type="image/png" href="/images/favicon.png">
+<link rel="apple-touch-icon" href="/images/favicon.png">
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Благодійний фонд «Талан.юа» допомагає громадам Харківщини розкривати свій потенціал через людей, культуру та спадщину.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,21 +14,21 @@
 <style>
 /* Layout: одноколонкова сторінка-розповідь; секції розділені стрічкою з пелюсток зірки-оберегу з логотипу */
 :root{
-  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#15171D; --muted:#5A5F6B; --line:#DDE0E6;
-  --blue:#1D5CC4; --yellow:#F3C316; --red:#C51C24; --black:#15171D;
-  --accent:#C51C24; --accent-ink:#FFFFFF; --link:#1D5CC4; --tint:#EEF2FA;
+  --bg:#F6F7F9; --surface:#FFFFFF; --ink:#15171D; --muted:#5A5F6B; --line:#DDE0E6; --logo-tile:transparent;
+  --blue:#005BBB; --yellow:#FFD500; --red:#CC0000; --black:#15171D;
+  --accent:#CC0000; --accent-ink:#FFFFFF; --link:#1D5CC4; --tint:#EEF2FA;
   --f-display:"Unbounded","Golos Text",system-ui,sans-serif;
   --f-body:"Golos Text",system-ui,-apple-system,"Segoe UI",sans-serif;
   --f-mark:"Comfortaa","Golos Text",sans-serif;
   --max:1120px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --bg:#101218; --surface:#181B23; --ink:#ECEEF3; --muted:#A3A9B6; --line:#2B303C;
-  --blue:#4C86E8; --yellow:#F3C316; --red:#E2434A; --black:#ECEEF3;
+  --bg:#101218; --surface:#181B23; --ink:#ECEEF3; --muted:#A3A9B6; --line:#2B303C; --logo-tile:#FFFFFF;
+  --blue:#4C86E8; --yellow:#FFD500; --red:#E2434A; --black:#ECEEF3;
   --accent:#E2434A; --accent-ink:#FFFFFF; --link:#7FA8F0; --tint:#1A2233; color-scheme:dark}}
 :root[data-theme="dark"]{
-  --bg:#101218; --surface:#181B23; --ink:#ECEEF3; --muted:#A3A9B6; --line:#2B303C;
-  --blue:#4C86E8; --yellow:#F3C316; --red:#E2434A; --black:#ECEEF3;
+  --bg:#101218; --surface:#181B23; --ink:#ECEEF3; --muted:#A3A9B6; --line:#2B303C; --logo-tile:#FFFFFF;
+  --blue:#4C86E8; --yellow:#FFD500; --red:#E2434A; --black:#ECEEF3;
   --accent:#E2434A; --accent-ink:#FFFFFF; --link:#7FA8F0; --tint:#1A2233; color-scheme:dark}
 
 html{scroll-behavior:smooth;scroll-padding-top:80px}
@@ -52,8 +53,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:9;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.brand svg{width:38px;height:38px}
-.brand span{font-family:var(--f-mark);font-size:22px;letter-spacing:.01em}
+.brand img{height:52px;width:auto;display:block;background:var(--logo-tile);border-radius:8px;padding:2px 4px}
 nav.menu ul{list-style:none;margin:0;padding:0;display:flex;gap:4px;align-items:center}
 nav.menu a{display:block;padding:8px 12px;text-decoration:none;color:var(--ink);font-weight:500;font-size:15px;border-radius:8px}
 nav.menu a:hover{background:var(--tint)}
@@ -83,17 +83,12 @@ nav.menu a.cta:hover{filter:brightness(1.08);background:var(--accent)}
 .btn.ghost{border-color:var(--ink);color:var(--ink);background:transparent}
 .btn.ghost:hover{background:var(--ink);color:var(--bg)}
 .hero-mark{position:relative;display:grid;place-items:center}
-.hero-mark svg{width:min(100%,380px);height:auto;overflow:visible}
-.hero-mark .word{position:absolute;font-family:var(--f-mark);font-size:clamp(22px,3.4vw,40px);background:var(--bg);padding:0 .2em;line-height:1}
+.hero-mark img{width:min(100%,420px);height:auto;display:block;background:var(--logo-tile);border-radius:20px;padding:12px}
 @media (prefers-reduced-motion:no-preference){
-  .hero-mark polygon{transform-origin:0 0;animation:unfold .9s cubic-bezier(.2,.8,.2,1) both}
-  .hero-mark polygon:nth-child(2){animation-delay:.06s}.hero-mark polygon:nth-child(3){animation-delay:.12s}
-  .hero-mark polygon:nth-child(4){animation-delay:.18s}.hero-mark polygon:nth-child(5){animation-delay:.24s}
-  .hero-mark polygon:nth-child(6){animation-delay:.30s}.hero-mark polygon:nth-child(7){animation-delay:.36s}
-  .hero-mark polygon:nth-child(8){animation-delay:.42s}
-  @keyframes unfold{from{transform:scale(.6) rotate(-20deg)}to{transform:none}}
+  .hero-mark img{animation:rise .8s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes rise{from{transform:scale(.94);opacity:.6}to{transform:none;opacity:1}}
 }
-@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-mark{order:-1}.hero-mark svg{width:200px}}
+@media (max-width:760px){.hero .wrap{grid-template-columns:1fr}.hero-mark{order:-1}.hero-mark img{width:220px}}
 
 /* stitch band divider */
 .band{height:18px;background:
@@ -252,8 +247,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top" aria-label="Талан.юа, на початок">
-      <svg class="star" viewBox="-60 -60 120 120" aria-hidden="true"><polygon class="pb" points="6.5,-2.7 36.5,-2.7 57.7,-23.9 27.7,-23.9"/><polygon class="py" points="2.7,-6.5 23.9,-27.7 23.9,-57.7 2.7,-36.5"/><polygon class="pb" points="-2.7,-6.5 -2.7,-36.5 -23.9,-57.7 -23.9,-27.7"/><polygon class="py" points="-6.5,-2.7 -27.7,-23.9 -57.7,-23.9 -36.5,-2.7"/><polygon class="pr" points="-6.5,2.7 -36.5,2.7 -57.7,23.9 -27.7,23.9"/><polygon class="pk" points="-2.7,6.5 -23.9,27.7 -23.9,57.7 -2.7,36.5"/><polygon class="pr" points="2.7,6.5 2.7,36.5 23.9,57.7 23.9,27.7"/><polygon class="pk" points="6.5,2.7 27.7,23.9 57.7,23.9 36.5,2.7"/></svg>
-      <span>талан.юа</span>
+      <img src="/images/logo.png" width="720" height="609" alt="Талан.юа">
     </a>
     <button class="burger" id="burger" aria-expanded="false" aria-controls="menu">Меню</button>
     <nav class="menu" id="menu" aria-label="Основне меню">
@@ -283,18 +277,8 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
           <a class="btn ghost" href="#projects">Наші проєкти</a>
         </div>
       </div>
-      <div class="hero-mark" aria-hidden="true">
-        <svg class="star" viewBox="-62 -62 124 124">
-          <polygon class="pb" points="6.5,-2.7 36.5,-2.7 57.7,-23.9 27.7,-23.9"/>
-          <polygon class="py" points="2.7,-6.5 23.9,-27.7 23.9,-57.7 2.7,-36.5"/>
-          <polygon class="pb" points="-2.7,-6.5 -2.7,-36.5 -23.9,-57.7 -23.9,-27.7"/>
-          <polygon class="py" points="-6.5,-2.7 -27.7,-23.9 -57.7,-23.9 -36.5,-2.7"/>
-          <polygon class="pr" points="-6.5,2.7 -36.5,2.7 -57.7,23.9 -27.7,23.9"/>
-          <polygon class="pk" points="-2.7,6.5 -23.9,27.7 -23.9,57.7 -2.7,36.5"/>
-          <polygon class="pr" points="2.7,6.5 2.7,36.5 23.9,57.7 23.9,27.7"/>
-          <polygon class="pk" points="6.5,2.7 27.7,23.9 57.7,23.9 36.5,2.7"/>
-        </svg>
-        <span class="word">талан.юа</span>
+      <div class="hero-mark">
+        <img src="/images/logo.png" width="720" height="609" alt="Логотип благодійного фонду «Талан.юа»">
       </div>
     </div>
   </section>
