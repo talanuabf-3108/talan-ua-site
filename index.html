@@ -151,6 +151,9 @@ nav.menu a.cta:hover{filter:brightness(1.08);background:var(--accent)}
 .learn ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 .learn li{display:grid;gap:6px;padding-top:16px;border-top:3px solid var(--yellow)}
 .learn li span{color:var(--muted);font-size:15px}
+.learn ul{align-items:start}
+.learn li{align-content:start}
+.learn .learn-photo{width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;margin-bottom:6px;background:var(--tint)}
 @media (max-width:760px){.learn ul{grid-template-columns:1fr}}
 
 /* team photo */
@@ -447,7 +450,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     $('goals').innerHTML=(h.about.goals||[]).map(function(g){return '<li><span>'+esc(g)+'</span></li>'}).join('');
     if(h.about.photo){$('team').innerHTML='<img src="'+esc(h.about.photo)+'" loading="lazy" alt="'+esc(h.about.photo_caption)+'"><figcaption>'+esc(h.about.photo_caption)+'</figcaption>'} else $('team').hidden=true;
     $('dirs').innerHTML=(h.directions||[]).map(function(d,i){return '<article class="dir"><svg class="star" viewBox="-60 -60 120 120" aria-hidden="true">'+ICONS[i%4]+'</svg><div><h3>'+esc(d.title)+'</h3><p>'+esc(d.text)+'</p></div></article>'}).join('');
-    $('learn').innerHTML=(h.learning||[]).map(function(l){return '<li><b>'+esc(l.title)+'</b><span>'+esc(l.text)+'</span></li>'}).join('');
+    $('learn').innerHTML=(h.learning||[]).map(function(l){return '<li>'+(l.photo?'<img class="learn-photo" src="'+esc(l.photo)+'" loading="lazy" alt="'+esc(l.title)+'">':'')+'<b>'+esc(l.title)+'</b><span>'+esc(l.text)+'</span></li>'}).join('');
 
     $('proj-grid').innerHTML=(D.projects.items||[]).map(function(p){
       var on=p.status!=='done';
