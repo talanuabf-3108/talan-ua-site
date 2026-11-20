@@ -4,6 +4,7 @@ backend:
   name: github
   repo: talanuabf-3108/talan-ua-site
   branch: main
+  # вхід через GitHub іде через посередника talan-auth на Cloudflare
   base_url: https://talan-auth.talan-ua-bf.workers.dev
   commit_messages:
     update: "Оновлено {{collection}} «{{slug}}»"
@@ -161,7 +162,8 @@ collections:
             fields:
               - { label: Назва, name: title, widget: string }
               - { label: Короткий опис, name: subtitle, widget: string, required: false }
-              - { label: Файл PDF, name: file, widget: file, media_folder: /docs, public_folder: /docs }
+              - { label: Файл PDF, name: file, widget: file, media_folder: /docs, public_folder: /docs, required: false, hint: "Завантажте PDF АБО заповніть поле посилання нижче" }
+              - { label: Або посилання (Google Drive тощо), name: url, widget: string, required: false, hint: "Повна адреса, напр. https://drive.google.com/... На Диску відкрийте доступ: «Усі, хто має посилання» → Переглядач" }
               - { label: Кількість сторінок, name: pages, widget: string, required: false, hint: "Напр.: 4 с." }
 
       - name: support
