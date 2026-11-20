@@ -4,6 +4,7 @@ backend:
   name: github
   repo: talanuabf-3108/talan-ua-site
   branch: main
+  site_domain: talan-ua.netlify.app
   commit_messages:
     update: "Оновлено {{collection}} «{{slug}}»"
 
