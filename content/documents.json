@@ -20,25 +20,36 @@
       "title": "Фінансовий звіт за 2025 рік",
       "subtitle": "Баланс і звіт про фінансові результати",
       "file": "/docs/finzvit-2025.pdf",
+      "url": "",
       "pages": "2 с."
     },
     {
       "title": "Статут",
       "subtitle": "БО «БФ «Талан.юа»",
       "file": "/docs/statut.pdf",
+      "url": "",
       "pages": "10 с."
     },
     {
       "title": "Витяг з ЄДР",
       "subtitle": "Державна реєстрація",
       "file": "/docs/vytyah-yedr.pdf",
+      "url": "",
       "pages": "3 с."
     },
     {
       "title": "Довідка про неприбутковість",
       "subtitle": "Реєстр неприбуткових установ",
       "file": "/docs/dovidka-neprybutkovist.pdf",
+      "url": "",
       "pages": "4 с."
+    },
+    {
+      "title": "Політики фонду",
+      "subtitle": "Папка з основними політиками і процедурами БО \"БФ \"Талан.юа\"\"",
+      "file": "",
+      "url": "https://drive.google.com/drive/folders/1Cduv4sGcRf2IZKnRF_MMSVDt9RJJObMB?usp=sharing",
+      "pages": ""
     }
   ]
 }
