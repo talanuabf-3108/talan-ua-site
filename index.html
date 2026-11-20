@@ -198,6 +198,7 @@ nav.menu a.cta:hover{filter:brightness(1.08);background:var(--accent)}
 .docs a:hover{background:var(--tint)}
 .docs .ico{width:40px;height:48px;border:1.5px solid var(--ink);border-radius:3px 12px 3px 3px;display:grid;place-items:end center;font-size:10px;font-weight:700;padding-bottom:4px;letter-spacing:.04em}
 .docs small{display:block;color:var(--muted);font-size:13px}
+.docs .ico.ext{font-size:18px;font-weight:600;place-items:center;padding-bottom:0;color:var(--blue);border-color:var(--blue)}
 .docs .pg{color:var(--muted);font-size:13px;white-space:nowrap}
 .src{color:var(--muted);font-size:13px;margin-top:-28px;margin-bottom:40px}
 @media (max-width:760px){.money,.docs{grid-template-columns:1fr}}
@@ -461,7 +462,7 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     $('pgroups').innerHTML=(D.partners.groups||[]).map(function(g){return '<div class="pgroup"><h3>'+esc(g.title)+'</h3><ul>'+(g.items||[]).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}).join('');
 
     $('money').innerHTML=(D.documents.money||[]).map(function(m){return '<div><b>'+esc(m.value)+'</b><span>'+esc(m.label)+'</span></div>'}).join('');
-    $('docs').innerHTML=(D.documents.items||[]).map(function(d){return '<li><a href="'+esc(d.file)+'" target="_blank" rel="noopener"><span class="ico">PDF</span><span>'+esc(d.title)+'<small>'+esc(d.subtitle)+'</small></span><span class="pg">'+esc(d.pages)+'</span></a></li>'}).join('');
+    $('docs').innerHTML=(D.documents.items||[]).filter(function(d){return d.url||d.file}).map(function(d){var link=d.url||d.file,ext=!!d.url;return '<li><a href="'+esc(link)+'" target="_blank" rel="noopener"><span class="ico'+(ext?' ext':'')+'">'+(ext?'↗':'PDF')+'</span><span>'+esc(d.title)+'<small>'+esc(d.subtitle)+'</small></span><span class="pg">'+esc(d.pages||(ext?'Google Диск':''))+'</span></a></li>'}).join('');
 
     var s=D.support;
     $('ways').innerHTML=(s.donate.ways||[]).map(function(w){return '<li><b>'+esc(w.title)+'</b><span>'+esc(w.text)+'</span></li>'}).join('');
