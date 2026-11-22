@@ -175,6 +175,19 @@ nav.menu a.cta:hover{filter:brightness(1.08);background:var(--accent)}
 /* project photo + news list */
 .proj-photo{width:calc(100% + 48px);max-width:none;margin:-24px -24px 4px;aspect-ratio:16/10;object-fit:cover;border-radius:14px 14px 0 0;display:block}
 .news-list{display:grid;gap:20px}
+.award.no-icon{grid-template-columns:1fr}
+.play .arrow{color:#fff;font-size:34px;font-weight:600;line-height:1}
+.award.has-photo{grid-template-columns:minmax(0,320px) 1fr;align-items:start}
+.award.has-photo:hover{border-color:var(--line)}
+.news-photo{display:block;border-radius:12px;overflow:hidden;background:var(--tint)}
+.news-photo img{display:block;width:100%;max-width:100%;aspect-ratio:4/3;object-fit:cover;transition:transform .3s}
+.news-photo:hover img{transform:scale(1.03)}
+.thumbs{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+.thumbs a{display:block;width:72px;height:54px;border-radius:8px;overflow:hidden;background:var(--tint)}
+.thumbs img{width:100%;height:100%;object-fit:cover;display:block}
+a.go{text-decoration:none}
+a.go:hover{text-decoration:underline}
+@media (max-width:700px){.award.has-photo{grid-template-columns:1fr}}
 .award-txt small.eyebrow{font-size:12px}
 
 /* partners */
@@ -453,10 +466,18 @@ footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px}
     var news=D.news.items||[];
     $('news').hidden=!news.length;
     $('news-list').innerHTML=news.map(function(n){
-      var inner='<span class="play" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></span><span class="award-txt">'+
-        (n.heading?'<small class="eyebrow">'+esc(n.heading)+'</small>':'')+'<b>'+esc(n.title)+'</b><span>'+esc(n.text)+'</span>'+
-        (n.link_url?'<span class="go">'+esc(n.link_text||'Детальніше')+' ↗</span>':'')+'</span>';
-      return n.link_url?'<a class="award" href="'+esc(n.link_url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="award">'+inner+'</div>';
+      var photos=(n.photos||[]).map(function(x){return typeof x==='string'?x:(x&&x.photo)}).filter(Boolean);
+      var yt=/youtu/i.test(n.link_url||'');
+      var txt='<span class="award-txt">'+
+        (n.heading?'<small class="eyebrow">'+esc(n.heading)+'</small>':'')+'<b>'+esc(n.title)+'</b>'+(n.text?'<span>'+esc(n.text)+'</span>':'');
+      if(photos.length){
+        var thumbs=photos.length>1?'<span class="thumbs">'+photos.slice(1).map(function(p,i){return '<a href="'+esc(p)+'" target="_blank" rel="noopener"><img src="'+esc(p)+'" loading="lazy" alt="'+esc(n.title)+', фото '+(i+2)+'"></a>'}).join('')+'</span>':'';
+        var go=n.link_url?'<a class="go" href="'+esc(n.link_url)+'" target="_blank" rel="noopener">'+esc(n.link_text||'Детальніше')+' ↗</a>':'';
+        return '<div class="award has-photo"><a class="news-photo" href="'+esc(photos[0])+'" target="_blank" rel="noopener"><img src="'+esc(photos[0])+'" loading="lazy" alt="'+esc(n.title)+'">'+(yt?'':'')+'</a>'+txt+thumbs+go+'</span></div>';
+      }
+      var icon=n.link_url?'<span class="play" aria-hidden="true">'+(yt?'<svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>':'<b class="arrow">↗</b>')+'</span>':'';
+      var inner=icon+txt+(n.link_url?'<span class="go">'+esc(n.link_text||'Детальніше')+' ↗</span>':'')+'</span>';
+      return n.link_url?'<a class="award" href="'+esc(n.link_url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="award no-icon">'+inner+'</div>';
     }).join('');
 
     $('pgroups').innerHTML=(D.partners.groups||[]).map(function(g){return '<div class="pgroup"><h3>'+esc(g.title)+'</h3><ul>'+(g.items||[]).map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul></div>'}).join('');
