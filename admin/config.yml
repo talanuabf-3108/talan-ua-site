@@ -122,6 +122,12 @@ collections:
               - { label: Текст, name: text, widget: text, required: false }
               - { label: Текст посилання, name: link_text, widget: string, required: false }
               - { label: Посилання (напр. на YouTube), name: link_url, widget: string, required: false }
+              - label: Фото (можна кілька; перше — головне)
+                name: photos
+                widget: list
+                required: false
+                label_singular: фото
+                field: { label: Фото, name: photo, widget: image }
 
       - name: partners
         label: Партнери
